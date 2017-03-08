@@ -1,4 +1,7 @@
+dependencies:
+    post:
+        - rm -r ~/.gradle || true
+
 test:
-  post:
-    - ./coverage.sh
-    - bash <(curl -s https://codecov.io/bash)
+    override:
+        - go test -v -race $(go list ./... | grep -v /vendor/)
